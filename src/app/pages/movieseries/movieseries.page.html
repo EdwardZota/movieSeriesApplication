@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <!-- toggle button to switch movie and series -->
+  <ion-toolbar>
+    <ion-title>
+      Movies
+      <ion-toggle aria-label="Light toggle" color="dark" [(ngModel)]="isMovie" (ionChange)="loadMovieSeries()"></ion-toggle>
+      Series
+      <ion-toggle (ionChange)="toggleTheme($event)" class="lightDark"></ion-toggle>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <!-- searchbar -->
+  <ion-searchbar search-icon="search-circle" placeholder="example:star wars" [(ngModel)]="searchText" (ionChange)="loadMovieSeries()"></ion-searchbar>
+
+  <ion-list>
+    <!-- here cau u choose year of a item -->
+    <ion-item>
+      <ion-select  class="dateSelector" label="Release Year:" [(ngModel)]="yearSelected"  (ionChange)="loadMovieSeries()">
+        <ion-select-option *ngFor="let year of years" [value]="year">
+          {{ year }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- here cau u choose if must be alphabetically -->
+    <ion-item>
+      <ion-checkbox [(ngModel)]="isAlphabetically" (ionChange)="loadMovieSeries()">Alphabetically:</ion-checkbox>
+    </ion-item>
+    <!-- here cau u choose if u want the item with a minimum rating -->
+    <ion-item>
+      <ion-select [(ngModel)]="currentRating" (ionChange)="loadMovieSeries()">
+        <div slot="label">Minimum Rating:</div>
+        <ion-select-option *ngFor="let i of allRating" [value]="i">{{i}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <!-- list with all result -->
+  <ion-list id="results" *ngIf="movieseries" lines="none">
+    <ion-item *ngFor="let item of movieseries">
+      <ion-card [routerLink]="[item.imdbID]">
+        <img *ngIf="item.Poster!=='N/A'" alt="{{item.Title}}" src="{{item.Poster}}" />
+        <img *ngIf="item.Poster==='N/A' " src="../../../assets/not-available.jpg" />
+        <ion-card-header>
+          <ion-card-title>{{item.Title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Type: {{item.Type}}</p>
+          <p>Release Date: {{item.Year}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+    <h4 *ngIf="errorText.length>0">{{errorText}}</h4>
+</ion-content>

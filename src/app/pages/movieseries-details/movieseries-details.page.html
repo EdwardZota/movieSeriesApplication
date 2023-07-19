@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{movieseries?.Title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- button to return to previous page -->
+  <ion-button (click)="goBack()" color="light">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+        Previous
+  </ion-button>
+
+  <!-- movie details -->
+      <ion-card *ngIf="movieseries" id="singleResult">
+        <img *ngIf="movieseries.Poster!=='N/A'" alt="{{movieseries.Title}}" src="{{movieseries.Poster}}" />
+        <img *ngIf="movieseries.Poster==='N/A'" src="../../../assets/not-available.jpg" />        <ion-card-header>
+          <ion-card-title>{{movieseries.Title}}</ion-card-title>
+          <ion-card-subtitle>{{movieseries.Plot}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p>Release Date(Theaters): {{movieseries.Released}}</p>
+          <p>Release Date(DVD): {{movieseries.DVD}}</p>
+          <p>Type: {{movieseries.Type}}</p>
+          <p>Genre: {{movieseries.Genre}}</p>
+          <p>Runtime: {{movieseries.Runtime}}</p>
+          <p>Language: {{movieseries.Language}}</p>
+          <p>Director: {{movieseries.Director}}</p>
+          <p>Writer: {{movieseries.Writer}}</p>
+          <p>Actors: {{movieseries.Actors}}</p>
+          <p>Rated: {{movieseries.Rated}}</p>
+          <p>BoxOffice: {{movieseries.BoxOffice}}</p>
+          <p>ImdbRating: {{movieseries.imdbRating}}</p>
+          <p *ngIf="movieseries.Ratings.length>0">Rating:  <br>
+              <ion-list lines="none" >
+                <ion-item *ngFor="let rating of movieseries.Ratings">
+                  {{rating.Source}} : {{rating.Value}}
+                </ion-item>
+              </ion-list>
+          </p>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

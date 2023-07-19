@@ -1,0 +1,25 @@
+img{
+  width: 100%;
+}
+ion-card-title{
+  font-size: 30px;
+}
+ion-card-subtitle{
+  font-size: 18px;
+}
+ion-card-content{
+  p{
+    font-size:  16px;
+  }
+  ion-item{
+    --padding-start: 8px;
+    --min-height: 20px;
+    color: #737373;
+  }
+}
+
+@media screen and (min-width:450px) {
+  #singleResult{
+      width: 400px;
+    }
+}

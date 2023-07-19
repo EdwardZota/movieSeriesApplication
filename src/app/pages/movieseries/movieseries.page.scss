@@ -1,0 +1,52 @@
+
+ion-card{
+  width: 100%;
+  border-radius: 15px;
+  img{
+    width: 100%;
+  }
+}
+
+h4{
+  padding: 30px;
+}
+
+ion-select.dateSelector{
+  background-color: transparent;
+}
+
+//button to switch into dark or light mode
+.lightDark{
+  position: absolute;
+  top: -4px;
+  right: 10px;
+
+  --track-background: #e9f1ff;
+  --track-background-checked: black;
+
+  --handle-background: #ffd109;
+  --handle-background-checked: white;
+
+  --handle-width: 25px;
+  --handle-height: 25px;
+  --handle-max-height: auto;
+  --handle-spacing: 6px;
+
+  --handle-border-radius: 50%;
+  --handle-box-shadow: none;
+}
+.lightDark::part(track) {
+  height: 30px;
+  width: 60px;
+
+}
+
+@media screen and (min-width:450px) {
+  #results{
+    display: flex;
+    flex-wrap: wrap;
+    ion-item{
+      width: 50%;
+    }
+  }
+}
